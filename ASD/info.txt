@@ -1,0 +1,119 @@
+ASD – Ažuriranje serijske (sortirane redne) datoteke
+====================================================
+
+1. Uvod
+----------------------------------------------------
+Aplikacija ASD je konzolna aplikacija napisana u programskom
+jeziku C. Namenjena je obradi podataka zasnovanoj na datotekama
+(file-based data processing), sa fokusom na azuriranje serijske
+(sortirane redne) datoteke proizvoda.
+
+Svaki proizvod je jedinstveno identifikovan pomocu ID vrednosti
+i ima pridruzen naziv i kolicinu.
+
+
+2. Organizacija podataka
+----------------------------------------------------
+Aplikacija koristi dve osnovne datoteke:
+
+- Maticna datoteka (maticna.dat)
+  Sadrzi trenutne podatke o proizvodima:
+  ID proizvoda, naziv proizvoda i raspolozivu kolicinu.
+  Datoteka je sortirana po ID-ju proizvoda u rastucem redosledu.
+
+- Transakciona datoteka (transakciona.dat)
+  Sadrzi hronoloski zapis promena nad proizvodima.
+  Promene mogu biti tipa:
+    ULAZ  – povecanje kolicine proizvoda
+    IZLAZ – smanjenje kolicine proizvoda
+
+Na osnovu transakcione datoteke kreira se sumarna i sortirana
+datoteka promena koja se koristi za azuriranje maticne datoteke.
+
+
+3. Postupak azuriranja
+----------------------------------------------------
+Proces azuriranja se sastoji iz sledecih koraka:
+
+1. Transakciona datoteka se obradi i sabere po ID-ju proizvoda.
+2. Dobija se sumarna transakciona datoteka sortirana po ID-ju.
+3. Maticna datoteka i datoteka promena se obradjuju sekvencijalno.
+4. Za svaki proizvod proverava se:
+   - da li proizvod postoji u maticnoj datoteci
+   - tip promene (ULAZ ili IZLAZ)
+   - validnost kolicine
+5. Na osnovu ishoda azuriranja kreiraju se odgovarajuci izvestaji.
+
+
+4. Slucajevi azuriranja
+----------------------------------------------------
+Aplikacija obuhvata pet slucajeva azuriranja:
+
+1. Osnovni slucaj
+   Azurira se postojeci proizvod, a kolicine su uvek odgovarajuce.
+
+2. Nepostojeca kolicina
+   Pokusava se izdavanje vece kolicine nego sto je dostupno.
+   Operacija se odbija i evidentira kao greska.
+
+3. Nov proizvod
+   Prima se kolicina proizvoda koji ne postoji u maticnoj datoteci.
+   Proizvod se dodaje u novu maticnu datoteku.
+
+4. Nepostojeci proizvod
+   Pokusava se izdavanje kolicine za proizvod koji ne postoji.
+   Operacija se odbija i evidentira kao greska.
+
+5. Sveobuhvatni slucaj
+   Kombinacija svih prethodnih slucajeva azuriranja.
+
+
+5. Izvestaji
+----------------------------------------------------
+Tokom azuriranja mogu se kreirati sledeci izvestaji:
+
+- prom_*.rpt
+  Izvestaj o uspesno izvrsenim promenama nad postojecim proizvodima.
+
+- nov_pro_*.rpt
+  Izvestaj o novim proizvodima koji su dodati u maticnu datoteku.
+
+- err_kol_*.rpt
+  Izvestaj o greskama nastalim zbog nepostojece kolicine proizvoda.
+
+- err_pro_*.rpt
+  Izvestaj o greskama nastalim zbog nepostojeceg proizvoda.
+
+
+7. Struktura direktorijuma
+----------------------------------------------------
+./ASD
+  asd.exe
+  info.txt
+
+./ASD/DATA
+  maticna.dat
+  transakciona.dat
+
+./ASD/DATA/OLD
+  mat_<datum>.dat
+  tran_<datum>.dat
+
+./ASD/RPT
+  prom_<datum>.rpt
+  nov_pro_<datum>.rpt
+
+./ASD/ERR
+  err_kol_<datum>.rpt
+  err_pro_<datum>.rpt
+
+
+8. Autor i mentor
+----------------------------------------------------
+Softverski inzenjer:
+- Luka Grcic
+
+Mentor / Domenski inzenjer:
+- Sasa D. Lazarevic
+
+Fakultet organizacionih nauka

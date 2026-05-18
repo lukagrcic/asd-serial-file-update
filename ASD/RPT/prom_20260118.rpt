@@ -1,0 +1,7 @@
+Id    StaraKolicina  Naziv      Tip   Promena  NovaKolicina  
+
+15    222            ddd        +     150      372           
+20    200            Pro_20     +     100      300           
+35    150            w          +     150      300           
+70    250            Pro_70     -     100      150           
+90    450            Pro_90     +     0        450           

@@ -1,0 +1,7 @@
+Id    StaraKolicina  Naziv      Tip   Promena  NovaKolicina  
+
+30    150            Pro_30     +     50       200           
+40    200            Pro_40     +     50       250           
+70    350            Pro_70     -     200      150           
+80    400            Pro_80     +     50       450           
+90    450            Pro_90     +     0        450           

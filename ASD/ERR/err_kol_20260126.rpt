@@ -1,0 +1,4 @@
+Id    Kolicina   Naziv      Tip   Promena    Greska
+
+30    150        Pro_30     -     200        Nepostojeca kolicina proizvoda.
+70    250        Pro_70     -     300        Nepostojeca kolicina proizvoda.
