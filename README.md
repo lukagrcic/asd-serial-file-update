@@ -11,9 +11,14 @@
 
 1. Klonirati repozitorijum
 2. Otvoriti `ASD.sln`
-3. Izabrati željeni scenario (`Slucaj1` – `Slucaj5`)
-4. Postaviti projekat kao `Startup Project`
-5. Pokrenuti aplikaciju
+3. **Retargetovati solution** – desni klik na solution u Solution Explorer-u → `Retarget Solution` → stiklirati sve projekte (`Slucaj1` – `Slucaj5`) → `OK`
+   > Ovaj korak je neophodan ako se koristi novija verzija Visual Studio-a od one u kojoj je projekat kreiran (npr. VS 2026). Bez toga dolazi do greške `MSB8020 – Platform Toolset v143 cannot be found`.
+4. Podesiti `Working Directory` za svaki projekat – desni klik na projekat → `Properties` → `Debugging` → `Working Directory` → promeniti na `$(SolutionDir)`
+   > Projekat koristi relativne putanje ka `ASD/` folderu koji se nalazi u root-u solution-a. Bez ovog podešavanja program ne može da pronađe ni kreira potrebne datoteke.
+5. Izgraditi solution – `Build` → `Build Solution` (`Ctrl+Shift+B`)
+6. Izabrati željeni scenario (`Slucaj1` – `Slucaj5`)
+7. Postaviti projekat kao `Startup Project`
+8. Pokrenuti aplikaciju
 
 ### Napomena
 
@@ -139,9 +144,19 @@ ROOT/
 │
 ├── ASD/
 │   ├── DATA/
+│   │   ├── maticna.dat
+│   │   ├── transakciona.dat
+│   │   └── OLD/
+│   │       ├── mat_<datum>.dat
+│   │       └── tran_<datum>.dat
 │   ├── DEMO/
 │   ├── ERR/
-│   └── RPT/
+│   │   ├── err_kol_<datum>.rpt
+│   │   └── err_pro_<datum>.rpt
+│   ├── RPT/
+│   │   ├── prom_<datum>.rpt
+│   │   └── nov_pro_<datum>.rpt
+│   └── info.txt
 │
 ├── Common/
 ├── Slucaj1/

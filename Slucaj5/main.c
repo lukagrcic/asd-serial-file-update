@@ -33,7 +33,7 @@ int main(void) {
 
 void transakciona_select_sumarnu(void) {
 	TRANSAKCIJA t;
-	FILE* tran_tek_pok = fopen(".\\ASD\\DATA\\OLD\\tran_20260126.dat", "rb");
+	FILE* tran_tek_pok = fopen(".\\ASD\\DEMO\\SLUC_5\\transakciona.dat", "rb");
 	if (!tran_tek_pok) {
 		printf("Transakciona datoteka ne postoji.\n");
 		return;
@@ -50,7 +50,7 @@ void transakciona_select_sumarnu(void) {
 
 void maticna_select_arhiviranu(void)
 {
-	FILE* mat_tek_pok = fopen(".\\ASD\\DATA\\OLD\\mat_20260126.dat", "rb");
+	FILE* mat_tek_pok = fopen(".\\ASD\\DEMO\\maticna.dat", "rb");
 	if (!mat_tek_pok) {
 		printf("ERROR: Ne mogu da otvorim maticnu datoteku.\n");
 		return;
